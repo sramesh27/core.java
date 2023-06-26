@@ -6,8 +6,7 @@ public class App {
 
 	public static void main(String[] args) {
 		UserService userService = new UserService();
-		userService.getAll();
-		
+		userService.create();
+		userService.getAll();	
 	}
-
 }
