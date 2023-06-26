@@ -1,7 +1,6 @@
 package in.saranyaramesh.demo_project.service;
 
 import in.saranyaramesh.demo_project.DAO.UserDAO;
-//import in.saranyaramesh.demo_project.DAO.UserList;
 import in.saranyaramesh.demo_project.model.User;
 
 public class UserService {
