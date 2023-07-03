@@ -2,6 +2,7 @@ package in.saranyaramesh.demo_project.service;
 
 import in.saranyaramesh.demo_project.DAO.UserDAO;
 import in.saranyaramesh.demo_project.model.User;
+import in.saranyaramesh.demo_project.validation.UserValidator;
 
 public class UserService {
 
@@ -13,19 +14,24 @@ public class UserService {
 		}
 		return userList;
 	}
-	public void create() {
-		User newUser = new User();
-		newUser.setId(12);
-		newUser.setEmail("Saran@gmail.com");
-		newUser.setFirstName("Saranya");
-		newUser.setLastName("Ramesh");
-		newUser.setPassword("1234567456");
-		newUser.setActive(true);
-		
+	public void create(User newUser) throws Exception {
+		UserValidator.validate(newUser);
 		UserDAO userDao = new UserDAO();
 		userDao.create(newUser);
 	}
-	
+	public void create1(User newUser1) {
+		
+		UserDAO userDao1 = new UserDAO();
+		userDao1.create(newUser1);
+	}
+//	public void update(User updateUser) {
+//		
+//		UserDAO userDAO2 = new UserDAO();
+//		userDAO2.update(updateUser);
+//	}
+
+		
+		
 }
 
 
