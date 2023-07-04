@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import in.saranyaramesh.demo_project.exception.ValidationException;
 import in.saranyaramesh.demo_project.model.User;
 import in.saranyaramesh.demo_project.service.UserService;
 
@@ -33,14 +34,13 @@ public class TestCreateUser {
 	@Test
 	public void testCreateUserWithInvalidInput() {
 		UserService userService = new UserService();
-		Exception exception = assertThrows(Exception.class, () ->{
+		Exception exception = assertThrows(ValidationException.class, () ->{
 			userService.create(null);
 		});
-		String expectedMessage = "Invalid user Input";
+		String expectedMessage = "Invalid input";
 		String actualMessage = exception.getMessage();
 		assertTrue(expectedMessage.equals(actualMessage));
 	}
-	
 	
 		@Test
 		public void testCreateUserWithEmailNull() {
@@ -49,7 +49,7 @@ public class TestCreateUser {
 			
 			User newUser = new User();
 			newUser.setId(12);
-			newUser.setEmail("");
+			newUser.setEmail(null);
 			newUser.setFirstName("Saranya");
 			newUser.setLastName("Ramesh");
 			newUser.setPassword("1234567456");
@@ -57,14 +57,123 @@ public class TestCreateUser {
 			newUser.toString();
 			
 		
-				Exception exception = assertThrows(Exception.class, () ->{
+				Exception exception = assertThrows(ValidationException.class, () ->{
 			userService.create(newUser);
 		});
-		String expectedMessage = "Email cannot be null or empty";
+		String expectedMessage = "email Invalid input";
 		String actualMessage = exception.getMessage();
 		assertTrue(expectedMessage.equals(actualMessage));
 	}
+	@Test
+	public void testCreateUserWithEmailEmpty() {
+		
+		UserService userService = new UserService();
+		
+		User newUser = new User();
+		newUser.setId(12);
+		newUser.setEmail("");
+		newUser.setFirstName("Saranya");
+		newUser.setLastName("Ramesh");
+		newUser.setPassword("1234567456");
+		newUser.setActive(true);
+		newUser.toString();
+		
+			Exception exception = assertThrows(ValidationException.class, () ->{
+				userService.create(newUser);
+	});
+	String expectedMessage = "email Invalid input";
+	String actualMessage = exception.getMessage();
+	assertTrue(expectedMessage.equals(actualMessage));
+	}
 	
+	@Test
+	public void testCreateUserWithPasswordEmpty() {
+		
+		UserService userService = new UserService();
+		
+		User newUser = new User();
+		newUser.setId(12);
+		newUser.setEmail("saranya@gmail.com");
+		newUser.setFirstName("Saranya");
+		newUser.setLastName("Ramesh");
+		newUser.setPassword("");
+		newUser.setActive(true);
+		newUser.toString();
+		
+		Exception exception = assertThrows(ValidationException.class, () ->{
+			userService.create(newUser);
+	});
+	String expectedMessage = "password Invalid input";
+	String actualMessage = exception.getMessage();
+	assertTrue(expectedMessage.equals(actualMessage));
+	}
+
+	@Test	
+	public void testCreateUserWithPasswordNull() {
+		
+		UserService userService = new UserService();
+		
+		User newUser = new User();
+		newUser.setId(12);
+		newUser.setEmail("saranya@gmail.com");
+		newUser.setFirstName("Saranya");
+		newUser.setLastName("Ramesh");
+		newUser.setPassword(null);
+		newUser.setActive(true);
+		newUser.toString();
+		
+		Exception exception = assertThrows(ValidationException.class, () ->{
+			userService.create(newUser);
+	});
+	String expectedMessage = "password Invalid input";
+	String actualMessage = exception.getMessage();
+	assertTrue(expectedMessage.equals(actualMessage));
+	}
 	
+	@Test	
+	public void testCreateUserWithFirstNameNull() {
+		
+		UserService userService = new UserService();
+		
+		User newUser = new User();
+		newUser.setId(12);
+		newUser.setEmail("saranya@gmail.com");
+		newUser.setFirstName(null);
+		newUser.setLastName("Ramesh");
+		newUser.setPassword("123456757");
+		newUser.setActive(true);
+		newUser.toString();
+		
+		Exception exception = assertThrows(ValidationException.class, () ->{
+			userService.create(newUser);
+	});
+	String expectedMessage = "FirstName Invalid input";
+	String actualMessage = exception.getMessage();
+	assertTrue(expectedMessage.equals(actualMessage));
+	}
 	
+	@Test	
+	public void testCreateUserWithFirstNameEmpty() {
+		
+		UserService userService = new UserService();
+		
+		User newUser = new User();
+		newUser.setId(12);
+		newUser.setEmail("saranya@gmail.com");
+		newUser.setFirstName("");
+		newUser.setLastName("Ramesh");
+		newUser.setPassword("123456757");
+		newUser.setActive(true);
+		newUser.toString();
+		
+		Exception exception = assertThrows(ValidationException.class, () ->{
+			userService.create(newUser);
+	});
+	String expectedMessage = "FirstName Invalid input";
+	String actualMessage = exception.getMessage();
+	assertTrue(expectedMessage.equals(actualMessage));
+	}
+	 
 }
+	
+

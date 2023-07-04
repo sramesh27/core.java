@@ -29,9 +29,6 @@ public class UserService {
 //		UserDAO userDAO2 = new UserDAO();
 //		userDAO2.update(updateUser);
 //	}
-
-		
-		
 }
 
 

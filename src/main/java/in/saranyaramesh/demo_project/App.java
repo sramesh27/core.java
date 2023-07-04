@@ -1,6 +1,8 @@
 package in.saranyaramesh.demo_project;
 
+import in.saranyaramesh.demo_project.model.Task;
 import in.saranyaramesh.demo_project.model.User;
+import in.saranyaramesh.demo_project.service.TaskService;
 import in.saranyaramesh.demo_project.service.UserService;
 
 public class App {
@@ -44,5 +46,25 @@ public class App {
 		//userService.create1(newUser1);
 //		userService.update(updateUser);
 		//userService.getAll();	
+		
+		TaskService taskService;
+		
+		try {
+			taskService = new TaskService();
+			
+			Task newTask = new Task();
+			newTask.setName("suji");
+			newTask.setId(2);
+			newTask.setDuedate("2021_03_27");
+			newTask.setActive(true);
+			
+			
+				taskService.create(newTask);
+				taskService.getAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
-}
+} 
