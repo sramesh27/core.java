@@ -1,75 +1,61 @@
 package in.saranyaramesh.demo_project.model;
 
 public class User {
-		
-	String firstName;
-	String lastName;
 	int id;
+	String firstname;
+	String lastname;
 	String email;
 	String password;
 	boolean isActive = true;
 	
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstname) {
-		this.firstName = firstname;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastname) {
-		this.lastName = lastname;
-	}
-	
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public boolean isActive() {
 		return isActive;
 	}
-
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-
+	
+	public String fullname() {
+		return firstname.concat("").concat("");
+		
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "User [firstName=" + firstName + ", lastName=" + lastName + ", id=" + id + ", email=" + email
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
 				+ ", password=" + password + ", isActive=" + isActive + "]";
 	}
-
-	
-	public String fullName() {
-		return firstName.concat(" ").concat(lastName);
-	}
-	
-	
 	
 	
 }

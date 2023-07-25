@@ -20,8 +20,8 @@ public class TestCreateUser {
 		User newUser = new User();
 		newUser.setId(12);
 		newUser.setEmail("Saran@gmail.com");
-		newUser.setFirstName("Saranya");
-		newUser.setLastName("Ramesh");
+		newUser.setFirstname("Saranya");
+		newUser.setFirstname("Ramesh");
 		newUser.setPassword("1234567456");
 		newUser.setActive(true);
 		
@@ -50,8 +50,8 @@ public class TestCreateUser {
 			User newUser = new User();
 			newUser.setId(12);
 			newUser.setEmail(null);
-			newUser.setFirstName("Saranya");
-			newUser.setLastName("Ramesh");
+			newUser.setFirstname("Saranya");
+			newUser.setFirstname("Ramesh");
 			newUser.setPassword("1234567456");
 			newUser.setActive(true);
 			newUser.toString();
@@ -72,8 +72,8 @@ public class TestCreateUser {
 		User newUser = new User();
 		newUser.setId(12);
 		newUser.setEmail("");
-		newUser.setFirstName("Saranya");
-		newUser.setLastName("Ramesh");
+		newUser.setFirstname("Saranya");
+		newUser.setFirstname("Ramesh");
 		newUser.setPassword("1234567456");
 		newUser.setActive(true);
 		newUser.toString();
@@ -94,8 +94,8 @@ public class TestCreateUser {
 		User newUser = new User();
 		newUser.setId(12);
 		newUser.setEmail("saranya@gmail.com");
-		newUser.setFirstName("Saranya");
-		newUser.setLastName("Ramesh");
+		newUser.setFirstname("Saranya");
+		newUser.setFirstname("Ramesh");
 		newUser.setPassword("");
 		newUser.setActive(true);
 		newUser.toString();
@@ -116,8 +116,8 @@ public class TestCreateUser {
 		User newUser = new User();
 		newUser.setId(12);
 		newUser.setEmail("saranya@gmail.com");
-		newUser.setFirstName("Saranya");
-		newUser.setLastName("Ramesh");
+		newUser.setFirstname("Saranya");
+		newUser.setFirstname("Ramesh");
 		newUser.setPassword(null);
 		newUser.setActive(true);
 		newUser.toString();
@@ -138,8 +138,8 @@ public class TestCreateUser {
 		User newUser = new User();
 		newUser.setId(12);
 		newUser.setEmail("saranya@gmail.com");
-		newUser.setFirstName(null);
-		newUser.setLastName("Ramesh");
+		newUser.setFirstname(null);
+		newUser.setFirstname("Ramesh");
 		newUser.setPassword("123456757");
 		newUser.setActive(true);
 		newUser.toString();
@@ -160,8 +160,8 @@ public class TestCreateUser {
 		User newUser = new User();
 		newUser.setId(12);
 		newUser.setEmail("saranya@gmail.com");
-		newUser.setFirstName("");
-		newUser.setLastName("Ramesh");
+		newUser.setFirstname("");
+		newUser.setLastname("Ramesh");
 		newUser.setPassword("123456757");
 		newUser.setActive(true);
 		newUser.toString();

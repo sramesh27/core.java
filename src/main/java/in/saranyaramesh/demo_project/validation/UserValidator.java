@@ -5,25 +5,25 @@ import in.saranyaramesh.demo_project.model.User;
 import in.saranyaramesh.demo_project.util.StringUtil;
 
 public class UserValidator {
-	
+
 	public static void validate(User user) throws ValidationException {
-		
+
 		if (user == null) {
-			throw new ValidationException("Invalid user Input");
+			throw new ValidationException("Invalid User input");
 		}
-		StringUtil.rejectIfInvalidString(user.getEmail(),"email");
-		StringUtil.rejectIfInvalidString(user.getPassword(),"password");
-		StringUtil.rejectIfInvalidString(user.getFirstName(),"firstName");
-		
-//		if(user.getEmail() == null || "".equals(user.getEmail().trim())) {
+//		if (user.getEmail() == null || ("").equals(user.getEmail().trim())) {
 //			throw new ValidationException("Email cannot be null or empty");
 //		}
-//		if(user.getPassword() == null || "".equals(user.getPassword().trim())) {
+		StringUtil.rejectIfInvalidString(user.getEmail(), "email");
+//		if (user.getPassword() == null || ("").equals(user.getEmail().trim())) {
 //			throw new ValidationException("Password cannot be null or empty");
 //		}
-//		if(user.getFirstName() == null || "".equals(user.getFirstName().trim())) {
+		StringUtil.rejectIfInvalidString(user.getPassword() , "password");
+//		if (user.getFirstName() == null || ("").equals(user.getEmail().trim())) {
 //			throw new ValidationException("Firstname cannot be null or empty");
 //		}
 		
+		StringUtil.rejectIfInvalidString(user.getFirstname() , "firstName");
+
 	}
 }

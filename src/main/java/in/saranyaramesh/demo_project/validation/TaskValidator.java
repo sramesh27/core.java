@@ -22,6 +22,7 @@ public class TaskValidator {
 	if(dueDate.equals(currentDate) || dueDate.isBefore(currentDate)) {
 		throw new ValidationException("Due date should be in future");
 	}
+	
 //	public static void validate (Task task) throws ValidationException {
 //		if (task == null) {
 //			throw new ValidationException(" Invalid user Input");

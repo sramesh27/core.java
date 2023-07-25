@@ -1,6 +1,6 @@
 package in.saranyaramesh.demo_project.model;
 
-public class Task {
+public class Task  {
 	
 	int id;
 	String name;
@@ -36,7 +36,6 @@ public class Task {
 	public String toString() {
 		return "Task [id=" + id + ", name=" + name + ", duedate=" + duedate + ", isActive=" + isActive + "]";
 	}
-	
 	
 	
 	

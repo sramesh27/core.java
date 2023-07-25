@@ -4,44 +4,34 @@ import in.saranyaramesh.demo_project.DAO.TaskDAO;
 import in.saranyaramesh.demo_project.model.Task;
 import in.saranyaramesh.demo_project.validation.TaskValidator;
 
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
 public class TaskService {
 
-	public Task[] getAll() {
-		
-		TaskDAO taskDAO = new TaskDAO();
-		Task[] taskList = taskDAO.findAll();
-		for (int i=0; i<taskList.length; i++) {
-			System.out.println(taskList[i]);
-		}
-		return taskList;
-	}
-	
 	public void create(Task newTask) throws Exception {
 		TaskValidator.validate(newTask);
-		TaskDAO taskDAO = new TaskDAO();
-		taskDAO.create(newTask);
+
+		TaskDAO taskObj = new TaskDAO();
+		taskObj.create(newTask);
 	}
 	
-	public void update(Task newTask) throws Exception {
-		TaskValidator.validate(newTask);
-		TaskDAO taskDAO = new TaskDAO();
-		taskDAO.update(1,newTask);
+	public LocalDate convertDate(String dueDate) {
+		
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			try {
+				LocalDate currDate = LocalDate.parse(dueDate , formatter);
+				return currDate;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			return null;
 	}
 	
-	public void delete(Task newTask) throws Exception{
-		TaskValidator.validate(newTask);
-		TaskDAO taskDAO = new TaskDAO();
-		taskDAO.delete(2);
+	public Set<Task> getAll() {
+		TaskDAO taskObj = new TaskDAO();
+		Set<Task> taskArray = taskObj.findAll();
+		return taskArray;
 	}
-	
-	public Task findById(int taskId) {
-		TaskDAO taskDAO = new TaskDAO();
-		Task task = taskDAO.findById(1);
-		return task;
-	}
-	
-	
-	
-	}
+}
 

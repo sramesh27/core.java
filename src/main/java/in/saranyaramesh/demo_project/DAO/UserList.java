@@ -1,7 +1,11 @@
 package in.saranyaramesh.demo_project.DAO;
 
+import java.util.Set;
+import java.util.HashSet;
 import in.saranyaramesh.demo_project.model.User;
-
 public class UserList {
-	public static User[] listOfUser = new User[10];
+	
+	public static Set<User> listOfUsers = new HashSet<User>();
+	
+	
 }
