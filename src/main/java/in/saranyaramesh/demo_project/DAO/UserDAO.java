@@ -63,13 +63,14 @@ public class UserDAO implements UserInterface{
 			ps.setString(2, newuser.getLastname());
 			ps.setString(3, newuser.getEmail());
 			ps.setString(4, newuser.getPassword());
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 			throw new RuntimeException();
 		}
 		finally {
-			ConnectionUtil.close(conn, ps, rs);
+			ConnectionUtil.close(conn, ps);
 		}
 	}
 
@@ -107,7 +108,7 @@ public class UserDAO implements UserInterface{
 			throw new RuntimeException();
 		}
 		finally {
-			ConnectionUtil.close(conn, ps, rs);
+			ConnectionUtil.close(conn, ps);
 		}
 		
 		return null;

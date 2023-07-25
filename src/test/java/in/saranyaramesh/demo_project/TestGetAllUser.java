@@ -1,5 +1,6 @@
 package in.saranyaramesh.demo_project;
 
+import in.saranyaramesh.demo_project.DAO.UserDAO;
 import in.saranyaramesh.demo_project.model.User;
 import in.saranyaramesh.demo_project.service.UserService;
 import java.util.Set;
@@ -15,3 +16,4 @@ public class TestGetAllUser {
 		System.out.println(arr);
 	}
 }
+
