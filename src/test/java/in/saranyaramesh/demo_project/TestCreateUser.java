@@ -18,12 +18,10 @@ public class TestCreateUser {
 		UserService userService = new UserService();
 		
 		User newUser = new User();
-		newUser.setId(12);
-		newUser.setEmail("Saran@gmail.com");
-		newUser.setFirstname("Saranya");
-		newUser.setFirstname("Ramesh");
-		newUser.setPassword("1234567456");
-		newUser.setActive(true);
+		newUser.setEmail("vv@gmail.com");
+		newUser.setFirstname("vv");
+		newUser.setLastname("Ramachandran");
+		newUser.setPassword("vv@123");
 		
 		assertDoesNotThrow(() ->{
 			userService.create(newUser);
@@ -173,7 +171,4 @@ public class TestCreateUser {
 	String actualMessage = exception.getMessage();
 	assertTrue(expectedMessage.equals(actualMessage));
 	}
-	 
 }
-	
-

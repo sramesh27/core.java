@@ -1,4 +1,91 @@
 -------------------------------------------------------------------------------
 Test set: in.saranyaramesh.demo_project.TestCreateUser
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s - in in.saranyaramesh.demo_project.TestCreateUser
+Tests run: 8, Failures: 8, Errors: 0, Skipped: 0, Time elapsed: 0.064 s <<< FAILURE! - in in.saranyaramesh.demo_project.TestCreateUser
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithValidInput()  Time elapsed: 0.006 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.RuntimeException: java.sql.SQLException: The url cannot be null
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:83)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:54)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:37)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3135)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithValidInput(TestCreateUser.java:28)
+Caused by: java.lang.RuntimeException: java.sql.SQLException: The url cannot be null
+	at in.saranyaramesh.demo_project.util.ConnectionUtil.getConnection(ConnectionUtil.java:36)
+	at in.saranyaramesh.demo_project.DAO.UserDAO.create(UserDAO.java:59)
+	at in.saranyaramesh.demo_project.service.UserService.create(UserService.java:33)
+	at in.saranyaramesh.demo_project.TestCreateUser.lambda$testCreateUserWithValidInput$0(TestCreateUser.java:29)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:50)
+	... 16 more
+Caused by: java.sql.SQLException: The url cannot be null
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at in.saranyaramesh.demo_project.util.ConnectionUtil.getConnection(ConnectionUtil.java:28)
+	... 20 more
+
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithEmailNull()  Time elapsed: 0.042 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithEmailNull(TestCreateUser.java:65)
+
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithInvalidInput()  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithInvalidInput(TestCreateUser.java:42)
+
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithEmailEmpty()  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithEmailEmpty(TestCreateUser.java:86)
+
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithPasswordEmpty()  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithPasswordEmpty(TestCreateUser.java:108)
+
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithFirstNameEmpty()  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithFirstNameEmpty(TestCreateUser.java:174)
+
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithPasswordNull()  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:40)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:179)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithPasswordNull(TestCreateUser.java:130)
+
+in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithFirstNameNull()  Time elapsed: 0.009 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown ==> expected: <in.saranyaramesh.demo_project.exception.ValidationException> but was: <java.lang.RuntimeException>
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:65)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:37)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3082)
+	at in.saranyaramesh.demo_project.TestCreateUser.testCreateUserWithFirstNameNull(TestCreateUser.java:147)
+Caused by: java.lang.RuntimeException: java.sql.SQLException: The url cannot be null
+	at in.saranyaramesh.demo_project.util.ConnectionUtil.getConnection(ConnectionUtil.java:36)
+	at in.saranyaramesh.demo_project.DAO.UserDAO.create(UserDAO.java:59)
+	at in.saranyaramesh.demo_project.service.UserService.create(UserService.java:33)
+	at in.saranyaramesh.demo_project.TestCreateUser.lambda$testCreateUserWithFirstNameNull$6(TestCreateUser.java:148)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:55)
+	... 16 more
+Caused by: java.sql.SQLException: The url cannot be null
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at in.saranyaramesh.demo_project.util.ConnectionUtil.getConnection(ConnectionUtil.java:28)
+	... 20 more
+

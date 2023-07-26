@@ -27,19 +27,34 @@ public class UserService {
 		return userList;
 	}
 
+	
 	public void create(User newUser) throws Exception {
-		UserDAO userDao = new UserDAO();
+		
 		UserValidator.validate(newUser);
+		
+		UserDAO userDao = new UserDAO();
+		
 		userDao.create(newUser);
 	}
 
-//	public void update(int id, User newUpdate) {
-//		UserDAO userDAO = new UserDAO();
-//		userDAO.update();
-//	}
+	public void update(int id, User newUpdate) throws Exception {
+		UserValidator.validate(newUpdate);
+		
+		UserDAO userDAO = new UserDAO();
+		userDAO.update(1, newUpdate);
+	}
 //
 //	public void delete(int id) {
 //		UserDAO userDao = new UserDAO();
 //		userDao.delete();
 //	}
+	
+	public User findById(int id) {
+		
+		UserDAO userDao = new UserDAO();
+		User user = userDao.findById(id);
+		return user;
+		
+	}
+	
 }

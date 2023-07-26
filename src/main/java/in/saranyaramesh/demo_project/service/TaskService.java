@@ -1,37 +1,76 @@
 package in.saranyaramesh.demo_project.service;
 
-import in.saranyaramesh.demo_project.DAO.TaskDAO;
-import in.saranyaramesh.demo_project.model.Task;
-import in.saranyaramesh.demo_project.validation.TaskValidator;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Set;
+
+import in.saranyaramesh.demo_project.DAO.TaskDAO;
+import in.saranyaramesh.demo_project.exception.ValidationException;
+import in.saranyaramesh.demo_project.model.Task;
+import in.saranyaramesh.demo_project.model.User;
+import in.saranyaramesh.demo_project.validation.TaskValidator;
+
 public class TaskService {
 
-	public void create(Task newTask) throws Exception {
-		TaskValidator.validate(newTask);
+	public Set<Task> getAll() {
 
-		TaskDAO taskObj = new TaskDAO();
-		taskObj.create(newTask);
+		TaskDAO taskDao = new TaskDAO();
+
+		Set<Task> taskList = taskDao.findAll();
+
+		return taskList;
 	}
 
-	public LocalDate convertDate(String dueDate) {
+	public void create(Task newTask) throws Exception {
+
+//		TaskValidator.validate(newTask);
+
+		try {
+			TaskValidator.validate(newTask);
+
+		} catch (ValidationException e) {
+
+			throw new ValidationException(e.getMessage());
 		
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			try {
-				LocalDate currDate = LocalDate.parse(dueDate , formatter);
-				return currDate;
 		} catch (Exception e) {
-			e.printStackTrace();
+
+			throw new ValidationException("Invalid date or invalid date format(dd.mm.yyyy)");
+
 		}
-			return null;
+
+		TaskDAO taskDao = new TaskDAO();
+		taskDao.create(newTask);
+
 	}
 	
-	public Set<Task> getAll() {
-		TaskDAO taskObj = new TaskDAO();
-		Set<Task> taskArray = taskObj.findAll();
-		return taskArray;
-	}
-}
+	/**
+	 * 
+	 * @param id
+	 * @param updateTask
+	 */
 
+	public void update(int id, Task updateTask) {
+
+		
+		TaskDAO taskDao = new TaskDAO();
+		taskDao.update(1, updateTask);
+
+	}
+//
+//	public void delete() {
+//
+//		TaskEntity deleteTask = new TaskEntity();
+//
+//		TaskDAO taskDao = new TaskDAO();
+//		taskDao.delete(1);
+//
+//	}
+//
+	public Task findById(int id) {
+		TaskDAO taskDao = new TaskDAO();
+		Task task = taskDao.findById(id);
+		return task;
+	}
+
+}

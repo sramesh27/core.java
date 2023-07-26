@@ -3,107 +3,187 @@ package in.saranyaramesh.demo_project;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+//import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
+
 import in.saranyaramesh.demo_project.exception.ValidationException;
 import in.saranyaramesh.demo_project.model.Task;
 import in.saranyaramesh.demo_project.service.TaskService;
 
 public class TestCreateTask {
-
+	
+	/// TEST FOR VALID INPUTS
+	
 	@Test
-	public void testCreateTaskWithValidataInput() {
+	public void testCreateTaskWithValidInput() {
+		
 		TaskService taskService = new TaskService();
+		
 		Task newTask = new Task();
-		newTask.setId(1);
-		newTask.setDuedate("2023-07-10");
-		newTask.setName("Practice");
-		newTask.setActive(true);
-		assertDoesNotThrow(() -> {
+		newTask.setTaskName("java");
+		newTask.setDueDate("09.08.2023");
+		
+		assertDoesNotThrow(()->{
 			taskService.create(newTask);
 		});
 	}
-
+	
+	/// TEST FOR INVALID INPUTS
+	
 	@Test
-	public void testCreateTaskWithInvalidataInput() {
+	public void testCreateTaskWithInvalidInput() throws Exception {
+		
 		TaskService taskService = new TaskService();
+		
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			taskService.create(null);
 		});
-		String expectedMessage = "Invalid Task Input";
+		String exceptedMessage = "Invalid task input";
 		String actualMessage = exception.getMessage();
-
-		assertTrue(expectedMessage.equals(actualMessage));
+		
+		assertTrue(exceptedMessage.equals(actualMessage));
 	}
-
+	
+	/// TEST FOR TASK NAME WITH NULL
+	
 	@Test
-
-	public void testCreateTaskWithNameNull() {
+	public void testCreateTaskWithTaskNameNull() {
 		TaskService taskService = new TaskService();
 		Task newTask = new Task();
 		newTask.setId(1);
-		newTask.setDuedate("2023-07-10");
-		newTask.setName(null);
+		newTask.setTaskName(null);
+		newTask.setDueDate("09.07.2023");
 		newTask.setActive(true);
 
-		Exception exception = assertThrows(Exception.class, () -> {
+		Exception exception = assertThrows(ValidationException.class, () -> {
 			taskService.create(newTask);
 		});
-		String expectedMessage = "Name cannot be null or empty";
+		String expectedMessage = "TaskName cannot be null or empty";
 		String actualMessage = exception.getMessage();
 
 		assertTrue(expectedMessage.equals(actualMessage));
 	}
+	
+	/// TEST FOR TASK NAME WITH EMPTY
 
 	@Test
-	public void testCreateUserWithNameEmpty() {
+	public void testCreateTaskWithTaskNameEmpty() {
 		TaskService taskService = new TaskService();
 		Task newTask = new Task();
 		newTask.setId(1);
-		newTask.setDuedate("2023-07-10");
-		newTask.setName("");
+		newTask.setTaskName("");
+		newTask.setDueDate("09.07.2023");
 		newTask.setActive(true);
 
-		Exception exception = assertThrows(Exception.class, () -> {
+		Exception exception = assertThrows(ValidationException.class, () -> {
 			taskService.create(newTask);
 		});
-		String expectedMessage = "Name cannot be null or empty";
+		String expectedMessage = "TaskName cannot be null or empty";
 		String actualMessage = exception.getMessage();
+
 		assertTrue(expectedMessage.equals(actualMessage));
 	}
 
-//	@Test
-//	public void testCreateTaskWithDueDateNull() {
-//		TaskService taskService = new TaskService();
-//		Task newTask = new Task();
-//		newTask.setId(1);
-//		newTask.setDuedate(null);
-//		newTask.setName("suji");
-//		newTask.setActive(true);
-//
-//		Exception exception = assertThrows(Exception.class, () -> {
-//			taskService.create(newTask);
-//		});
-//		String expectedMessage = "Duedate cannot be null or empty";
-//		String actualMessage = exception.getMessage();
-//
-//		assertTrue(expectedMessage.equals(actualMessage));
-//	}
-//
-//	@Test
-//	public void testCreateUserWithDueDateEmpty() {
-//		TaskService taskService = new TaskService();
-//		Task newTask = new Task();
-//		newTask.setId(1);
-//		newTask.setDuedate("");
-//		newTask.setName("Practice");
-//		newTask.setActive(true);
-//
-//		Exception exception = assertThrows(Exception.class, () -> {
-//			taskService.create(newTask);
-//		});
-//		String expectedMessage = "Duedate cannot be null or empty";
-//		String actualMessage = exception.getMessage();
-//
-//		assertTrue(expectedMessage.equals(actualMessage));
-//	}
+	/// TEST FOR TASK DUE DATE WITH NULL
+	
+	@Test
+	public void testCreateTaskWithTaskDueDateNull() {
+		TaskService taskService = new TaskService();
+		Task newTask = new Task();
+		newTask.setId(1);
+		newTask.setTaskName("RC");
+		newTask.setDueDate(null);
+		newTask.setActive(true);
+
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			taskService.create(newTask);
+		});
+		String expectedMessage = "DueDate cannot be null or empty";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	
+	/// TEST FOR TASK DUE DATE WITH EMPTY
+
+	@Test
+	public void testCreateTaskWithTaskDueDateEmpty() {
+		TaskService taskService = new TaskService();
+		Task newTask = new Task();
+		newTask.setId(1);
+		newTask.setTaskName("RC");
+		newTask.setDueDate("");
+		newTask.setActive(true);
+
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			taskService.create(newTask);
+		});
+		String expectedMessage = "DueDate cannot be null or empty";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	
+	/// TEST FOR TASK DUE DATE FORMAT
+	
+	@Test
+	public void testCreateTaskWithTaskDueDateFormat() {
+		TaskService taskService = new TaskService();
+		Task newTask = new Task();
+		newTask.setId(1);
+		newTask.setTaskName("RC");
+		newTask.setDueDate("1.1.02");
+		newTask.setActive(true);
+
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			taskService.create(newTask);
+		});
+		String expectedMessage = "Invalid date or invalid date format(dd.mm.yyyy)";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	
+	/// TEST FOR TASK DUE DATE IS PAST OR NOT
+	
+	@Test
+	public void testCreateTaskWithTaskDueDateIsPast() {
+		TaskService taskService = new TaskService();
+		Task newTask = new Task();
+		newTask.setId(1);
+		newTask.setTaskName("RC");
+		newTask.setDueDate("10.01.2002");
+		newTask.setActive(true);
+
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			taskService.create(newTask);
+		});
+		String expectedMessage = "Invalid date or invalid date format(dd.mm.yyyy)";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(expectedMessage.equals(actualMessage));
+	}
+	
+	/// TEST FOR TASK DUE DATE IS INValid
+	
+		@Test
+		public void testCreateTaskWithTaskDueDateInValid() {
+			TaskService taskService = new TaskService();
+			Task newTask = new Task();
+			newTask.setId(1);
+			newTask.setTaskName("RC");
+			newTask.setDueDate("1.10.2024");
+			newTask.setActive(true);
+
+			Exception exception = assertThrows(ValidationException.class, () -> {
+				taskService.create(newTask);
+			});
+			String expectedMessage = "Invalid date or invalid date format(dd.mm.yyyy)";
+			String actualMessage = exception.getMessage();
+
+			assertTrue(expectedMessage.equals(actualMessage));
+		}
+	
 }

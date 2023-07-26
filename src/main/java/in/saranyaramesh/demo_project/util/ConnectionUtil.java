@@ -9,27 +9,21 @@ import java.sql.SQLException;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
-	Dotenv env = Dotenv.load();
-	
-	String url = env.get("DATABASE_HOST");
-	String username = env.get("DATABASE_USERNAME");
-	String password = env.get("DATABASE_PASSWORD");
-	
-	Connection connection = null;
 	
 	public static Connection getConnection() {
+		
+		Dotenv env = Dotenv.load();
+		
+		String url = env.get("DATABASE_HOST");
+		String userName = env.get("DATABASE_USERNAME");
+		String password = env.get("DATABASE_PASSWORD");
+		
 		Connection connection = null;
-		String url = null;
-		String userName = null;
-		String password = null;
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			 connection = DriverManager.getConnection(url,userName,password);
 			 
-//			  "jdbc:mysql://aws.connect.psdb.cloud/core_java_db?sslMode=VERIFY_IDENTITY",
-//			  "p1sa13420z5bu9400cbs",
-//			  "pscale_pw_BEwuhpic2rduwE8CuLvbMUtERWGPTkNCRCodXxL8MAa");
 		}
 		catch(Exception e){
 			e.printStackTrace();

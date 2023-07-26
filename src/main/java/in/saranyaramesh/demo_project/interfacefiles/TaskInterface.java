@@ -5,7 +5,10 @@ import java.util.Set;
 
 import in.saranyaramesh.demo_project.model.Task;
 
-public interface TaskInterface extends Base<Task> {
 
-	public static Set<Task> listOfTasks = new HashSet<Task>();
+public interface TaskInterface extends Base<Task>{
+
+	public abstract Task findByTaskName();
+	public abstract Task findByDueDate();
+	
 }

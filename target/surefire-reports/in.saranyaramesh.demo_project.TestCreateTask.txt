@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: in.saranyaramesh.demo_project.TestCreateTask
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.061 s <<< FAILURE! - in in.saranyaramesh.demo_project.TestCreateTask
+in.saranyaramesh.demo_project.TestCreateTask.testCreateTaskWithValidataInput()  Time elapsed: 0.053 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: in.saranyaramesh.demo_project.exception.ValidationException: Due date should be in future
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:83)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:54)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:37)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3135)
+	at in.saranyaramesh.demo_project.TestCreateTask.testCreateTaskWithValidataInput(TestCreateTask.java:21)
+Caused by: in.saranyaramesh.demo_project.exception.ValidationException: Due date should be in future
+	at in.saranyaramesh.demo_project.validation.TaskValidator.validate(TaskValidator.java:23)
+	at in.saranyaramesh.demo_project.service.TaskService.create(TaskService.java:13)
+	at in.saranyaramesh.demo_project.TestCreateTask.lambda$testCreateTaskWithValidataInput$0(TestCreateTask.java:22)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:50)
+	... 16 more
+

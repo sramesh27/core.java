@@ -47,15 +47,14 @@ public class UserDAO implements UserInterface{
 //		return userList;
 	}
 
+	@Override
 	public void create(User newuser) {
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement ps = null;
-		User user = null;
-		ResultSet rs = null;
 		
 		try {
-			String query = "INSERT INTO user (firstname,lastname,email,password)values(?,?,?,?)";
+			String query = "INSERT INTO users (first_name,last_name,email,password)values(?,?,?,?)";
 			conn = ConnectionUtil.getConnection();
 			ps = conn.prepareStatement(query);
 			
@@ -63,6 +62,10 @@ public class UserDAO implements UserInterface{
 			ps.setString(2, newuser.getLastname());
 			ps.setString(3, newuser.getEmail());
 			ps.setString(4, newuser.getPassword());
+			
+			ps.executeUpdate();
+			
+			System.out.println("User created Successfully");
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -75,7 +78,7 @@ public class UserDAO implements UserInterface{
 	}
 
 	@Override
-	public Set<User> findById(int id) {
+	public User findById(int id) {
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -83,7 +86,7 @@ public class UserDAO implements UserInterface{
 		ResultSet rs = null;
 		
 		try {
-			String query = "SELECT * FROM users WHERE isActive = 1 AND id = ?";
+			String query = "SELECT * FROM users WHERE is_active = 1 AND id = ?";
 			conn = ConnectionUtil.getConnection();
 			ps = conn.prepareStatement(query);
 			 
@@ -94,10 +97,10 @@ public class UserDAO implements UserInterface{
 			if(rs.next()) {
 				user = new User();
 				user.setId(rs.getInt("id"));
-				user.setFirstname(rs.getString("firstname"));
-				user.setLastname(rs.getString("Lastname"));
+				user.setFirstname(rs.getString("first_name"));
+				user.setLastname(rs.getString("Last_name"));
 				user.setEmail(rs.getString("email"));
-				user.setActive(rs.getBoolean("isActive"));
+				user.setActive(rs.getBoolean("is_active"));
 				user.setPassword(rs.getString("password"));
 				
 			}
@@ -111,11 +114,35 @@ public class UserDAO implements UserInterface{
 			ConnectionUtil.close(conn, ps);
 		}
 		
-		return null;
+		return user;
 	}
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+	public void update(int id, User updateUser) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		
+		try {
+			String query = "UPDATE users SET first_name = ?, last_name = ? WHERE is_active = 1 AND id = ?";
+			connection = ConnectionUtil.getConnection();
+			ps = connection.prepareStatement(query);
+			
+
+			
+			ps.setString(1, updateUser.getFirstname());
+			ps.setString(2,  updateUser.getLastname());
+			ps.setInt(3, id);
+			ps.executeUpdate();
+			
+			System.out.println("User has been updated successfully");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException();
+			
+		} finally {
+			ConnectionUtil.close(connection, ps);
+		}
 		
 	}
 	@Override
@@ -139,14 +166,6 @@ public class UserDAO implements UserInterface{
 		return 0;
 	}
 
-
-
-
-	@Override
-	public void create() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	/**
 	 *
